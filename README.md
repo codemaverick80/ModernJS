@@ -375,3 +375,50 @@ html = `
 document.body.innerHTML = html;
 
 ```
+
+##### Object Literal
+
+```javascript
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 36,
+  hobbies: ["music", "movies", "coding"],
+  address: {
+    city: "San Francisco",
+    state: "CA",
+  },
+  getBirthYear: function () {
+    return 2020 - this.age;
+  },
+};
+
+let val;
+val = person;
+val = person.firstName;
+val = person["firstName"];
+val = person.age;
+val = person.hobbies;
+val = person.hobbies[1];
+val = person.address;
+val = person.address.city;
+val = person.address["state"];
+val = person.getBirthYear();
+
+console.log(val);
+
+```
+
+##### Array of Object
+
+```javascript
+const perople = [
+  { name: "John", age: 36 },
+  { name: "Mike", age: 32 },
+  { name: "Sally", age: 35 },
+  { name: "Scott", age: 28 },
+];
+
+console.log(perople);
+
+```
