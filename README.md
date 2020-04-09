@@ -9,7 +9,7 @@ Learning Modern JavaScript
   - Bracket Pair Colorizer 2
   - Prettier - Code formatter
 
-### Variable naming convention
+## Variable naming convention
 - Camel Case (preferred)
 - `var firstName ='John Doe';` for multi word variable
 
@@ -87,4 +87,76 @@ console.log(numbers);
  //Error : Assignment to constant variable
  //numbers = [1, 2, 3];
 ```
+## Js Data types
+### Primitive Data Type
+- stored directly in the location the variable accesses
+- stored on the stack
 
+
+### Reference Data Type
+- accessed by reference
+- objects that are stored on the heap
+- a pointer to a location in memory
+
+
+
+| Primitive Data type | Reference Data type |
+| ------------------- | ------------------- |
+| String              | Arrays              |
+| Number              | Object Literals     |  
+| Boolean             | Functions           |  
+| Null                | Dates               | 
+| Undefined           | Anything Else..     |  
+| Symbols (ES6)       | Content Cell        |  
+
+``` javascript
+
+// Primitive Types
+
+//String
+const name = "John Doe";
+console.log(typeof name); //string
+
+//Number
+const age = 30;
+console.log(typeof age); //number
+
+//Boolean
+const married = true;
+console.log(typeof married); //boolean
+
+//Null
+const car = null;
+console.log(typeof car); //object (which is bug)
+
+//Undefined
+let animal;
+console.log(typeof animal); //undefined
+
+//Symbol
+const sym = Symbol();
+console.log(typeof sym); //symbol
+
+```
+
+
+``` javascript
+// Reference Type - Objects
+//Array
+const hobbies = ["movies", "music", "coding"];
+console.log(typeof hobbies); //object
+
+//Object Literal
+const address = {
+  street: "42 South Ave",
+  city: "San Francisco",
+  state: "CA",
+};
+console.log(typeof address); //object
+
+//Date
+const today = new Date();
+console.log(today);
+console.log(typeof today); // object
+
+```
