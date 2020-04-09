@@ -318,3 +318,60 @@ console.log(val);
 
 
 ```
+
+
+#### String Methods & Concatenation
+
+
+
+
+#### Template Literals (Template string)
+
+##### Without template string (es5), old way
+```javascript
+const name = "John Doe";
+const age = 30;
+const job = "Web Development";
+const city = "San Francisco";
+let html;
+
+// without template string (es5), old way
+html='<ul> <li>Name: '+ name +'</li> <li>Age: '+ age +'</li> <li>Job: '+ job +'</li> <li>City: '+ city +'</li> </ul>'
+
+// OR
+
+html='<ul>'+
+     '<li>Name: '+ name +'</li>'+
+     '<li>Age: '+ age +'</li>'+
+     '<li>Job: '+ job +'</li>'+
+     '<li>City: '+ city +'</li>'+
+     '</ul>';
+
+
+
+document.body.innerHTML=html;
+
+```
+
+##### With template string (es6)
+
+```javascript
+const name = "John Doe";
+const age = 30;
+const job = "Web Development";
+const city = "San Francisco";
+let html;
+
+// with template string (es6)
+html = `
+      <ul>
+        <li>Name : ${name}</li>
+        <li>Age : ${age}</li>
+        <li>Job : ${job}</li>
+        <li>City : ${city}</li>
+      </ul>
+`;
+
+document.body.innerHTML = html;
+
+```
