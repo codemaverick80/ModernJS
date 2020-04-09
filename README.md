@@ -160,3 +160,124 @@ console.log(today);
 console.log(typeof today); // object
 
 ```
+
+## Type Conversion
+``` javascript
+let val;
+val = 5;
+
+//output
+console.log(val); // 5
+console.log(typeof val); // number
+console.log(val.length); // undefined becasue length works with string
+
+```
+##### Number to string
+
+``` javascript
+let val;
+
+// Number to string
+val = String(5);
+
+//output
+console.log(val); // 5
+console.log(typeof val); // string
+console.log(val.length); // 1
+
+```
+
+##### Boolean to string
+
+```javascript
+let val;
+
+// Boolean to string
+val = String(true);
+
+//output
+console.log(val); // true
+console.log(typeof val); // string
+console.log(val.length); // 4
+
+```
+
+##### Date to string
+
+```javascript
+let val;
+
+// Date to string
+val = String(new Date());
+
+//output
+console.log(val); // Thu Apr 09 2020 14:43:12 GMT-0700 (Pacific Daylight Time)
+console.log(typeof val); // string
+console.log(val.length); // 57
+
+```
+
+##### Array to string
+```javascript
+let val;
+
+// Array to string
+val = String([1, 2, 3, 4, 5]);
+
+//output
+console.log(val); // 1,2,3,4,5
+console.log(typeof val); // string
+console.log(val.length); // 9
+
+```
+
+##### convert to number
+```javascript
+let val;
+
+// string to number
+val = Number(3);
+console.log(val); // 3
+console.log(typeof val); // number
+console.log(val.toFixed()); // 3
+
+//boolean to number
+val = Number(true);
+console.log(val); // 1
+console.log(typeof val); // number
+console.log(val.toFixed()); // 1
+
+val = Number(false);
+console.log(val); // 0
+console.log(typeof val); // number
+console.log(val.toFixed()); // 0
+
+//null to number
+val = Number(null);
+console.log(val); // 0
+console.log(typeof val); // number
+console.log(val.toFixed()); // 0
+
+// string to number
+val = Number("hello");
+console.log(val); // NaN
+console.log(typeof val); // number
+console.log(val.toFixed()); // NaN
+
+//array to number
+val = Number([1, 2, 3, 4]);
+console.log(val); // NaN
+console.log(typeof val); // number
+console.log(val.toFixed()); // NaN
+
+val = parseInt(5);
+console.log(val); // 5
+console.log(typeof val); // number
+console.log(val.toFixed()); // 5
+
+val = parseFloat(5.35);
+console.log(val); // 5.35
+console.log(typeof val); // number
+console.log(val.toFixed(2)); // 5.35
+
+```
