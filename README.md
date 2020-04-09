@@ -281,3 +281,40 @@ console.log(typeof val); // number
 console.log(val.toFixed(2)); // 5.35
 
 ```
+
+
+### Math Object
+
+```javascript
+let val;
+
+val = Math.PI; //3.141592653589793
+
+val = Math.round(2.4); //2
+
+val = Math.round(2.5); //3
+
+val = Math.ceil(4.4); //5
+
+val = Math.floor(4.4); //4
+
+val = Math.sqrt(25); //5
+
+val = Math.abs(-2); //2
+
+val = Math.pow(8, 2); //64
+
+val = Math.min(5, 7, 4, 1, 8, -4); //-4
+
+val = Math.max(5, 7, 4, 1, 8, -4); //8
+
+val = Math.random(); // it will give us a random decimal, like 0.13372837819279804
+
+val = Math.random() * 20; // random decimal number between 0-19, like 7.601589596167888
+
+val = Math.floor((val = Math.random() * 20));
+
+console.log(val);
+
+
+```
