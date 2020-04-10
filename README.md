@@ -378,6 +378,12 @@ html = `
 document.body.innerHTML = html;
 ```
 
+##### Arrays & Array Method
+
+```javascript
+//TODO:...
+```
+
 ##### Object Literal
 
 ```javascript
@@ -421,4 +427,192 @@ const perople = [
 ];
 
 console.log(perople);
+```
+
+##### Date and Time
+
+```javascript
+//TODO:..
+```
+
+##### If Statement
+
+```javascript
+//TODO:..
+```
+
+##### Switches
+
+```javascript
+//TODO:..
+```
+
+##### Function & Function Expression
+
+###### Function declarations & Calling
+
+```javascript
+//Function declarations
+function greet() {
+  return "Hello";
+}
+// calling function
+greet();
+```
+
+###### Function Parameters
+
+```javascript
+function fullName(fname, lname) {
+  if (typeof fname === "undefined") {
+    fname = "John";
+  }
+  if (typeof lname === "undefined") {
+    lname = "Doe";
+  }
+
+  return fname + " " + lname;
+}
+
+//calling
+fullName();
+fullName("Mark", "smith");
+```
+
+###### Function Parameters (with ES6)
+
+```javascript
+function fullName(fname = "John", lname = "Doe") {
+  return fname + " " + lname;
+}
+
+//calling
+fullName();
+fullName("Mark", "smith");
+```
+
+###### Function Expression
+
+```javascript
+const square = function (x) {
+  return x * x;
+};
+
+square(8);
+
+// with ES6
+const square = function (x = 3) {
+  return x * x;
+};
+
+square(8);
+```
+
+###### IIFE (Immidiatley Invokable Function Expression)
+
+```javascript
+(function () {
+  console.log("IIFE Ran...");
+})();
+
+(function (name) {
+  console.log("Hello" + name);
+})("Brad");
+
+// Property Methods
+//Note: when a function is put inside of an object is called method
+const todo = {
+  add: function () {
+    console.log("Add todo...");
+  },
+  edit: function (id) {
+    console.log(`Edit todo ${id}`);
+  },
+};
+
+todo.delete = function () {
+  console.log("Delete todo...");
+};
+
+todo.add();
+todo.edit(22);
+todo.delete();
+```
+
+##### Loops
+
+```javascript
+//TODO:..
+```
+
+##### Block scope with let & const
+
+```javascript
+//TODO:..
+```
+
+#### DOM Selectors
+
+```javascript
+// DOM Selectors for single elements (getElementById())
+console.log(document.getElementById("task-title"));
+
+//Get things from the element
+console.log(document.getElementById("task-title").id);
+console.log(document.getElementById("task-title").className);
+
+//change styling
+console.log((document.getElementById("task-title").style.background = "#333"));
+console.log((document.getElementById("task-title").style.color = "#ffffff"));
+
+// Change content
+console.log((document.getElementById("task-title").textContent = "Task List"));
+console.log((document.getElementById("task-title").innerText = "My List"));
+console.log(
+  (document.getElementById("task-title").innerHTML =
+    '<span style="color:red">Task List</span>')
+);
+
+// DOM Selectors for single elements (querySelector())
+
+console.log(document.querySelector("#task-title"));
+console.log(document.querySelector(".card-title"));
+
+//Get things from the element
+console.log((document.querySelector("li").style.color = "red"));
+console.log((document.querySelector("ul li").style.color = "blue"));
+
+console.log((document.querySelector("li:last-child").style.color = "red"));
+console.log((document.querySelector("li:nth-child(3)").style.color = "yellow"));
+console.log(
+  (document.querySelector("li:nth-child(4)").textContent = "hello World")
+);
+
+console.log(
+  (document.querySelector("li:nth-child(odd)").style.background = "#ccc")
+);
+
+// DOM Selectors for multiple elements (getElementsByClassName())
+
+const items = document.getElementsByClassName("collection-item");
+console.log(items);
+console.log(items[0]);
+
+const listItems = document
+  .querySelector("ul")
+  .getElementsByClassName("collection-item");
+console.log(listItems);
+
+// DOM Selectors for multiple elements (getElementsByTagName())
+let liList = document.getElementsByTagName("li");
+console.log(liList);
+console.log(liList[1]);
+
+liList = Array.from(liList);
+liList.reverse();
+console.log(liList);
+
+liList.forEach(function (li) {
+  console.log(li.className);
+});
 ```
