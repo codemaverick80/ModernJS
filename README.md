@@ -6,16 +6,12 @@ Learning Modern JavaScript
 
 1. Install Visual Studio Code (https://code.visualstudio.com/)
 2. Install following extensions for VS Code
-  - Bracket Pair Colorizer 2
-  - Prettier - Code formatter
 
-<<<<<<< HEAD
 - Bracket Pair Colorizer 2
 - Prettier - Code formatter
-- JavaScript (ES6) code snippets
-- live Server
-=======
+
 ## Variable naming convention
+
 - Camel Case (preferred)
 - `var firstName ='John Doe';` for multi word variable
 
@@ -23,8 +19,7 @@ Learning Modern JavaScript
 
 #### var
 
-``` javascript
-
+```javascript
 var name = "John Doe";
 console.log(name);
 
@@ -36,24 +31,22 @@ var greeting;
 console.log(greeting); //undefined
 greeting = "Hello";
 console.log(greeting);
-
 ```
+
 #### let
 
 ```javascript
-
- let name;
- name = "John Doe";
- console.log(name);
- name = "Smith";
- console.log(name);
-
+let name;
+name = "John Doe";
+console.log(name);
+name = "Smith";
+console.log(name);
 ```
 
-
 #### const
-  - const variable can not be reassign
-  - const variabel must me initialize 
+
+- const variable can not be reassign
+- const variabel must me initialize
 
 ```javascript
 const name = "John Doe";
@@ -93,30 +86,30 @@ console.log(numbers);
  //Error : Assignment to constant variable
  //numbers = [1, 2, 3];
 ```
+
 ## Js Data types
+
 ### Primitive Data Type
+
 - stored directly in the location the variable accesses
 - stored on the stack
 
-
 ### Reference Data Type
+
 - accessed by reference
 - objects that are stored on the heap
 - a pointer to a location in memory
 
-
-
 | Primitive Data type | Reference Data type |
 | ------------------- | ------------------- |
 | String              | Arrays              |
-| Number              | Object Literals     |  
-| Boolean             | Functions           |  
-| Null                | Dates               | 
-| Undefined           | Anything Else..     |  
-| Symbols (ES6)       | Content Cell        |  
+| Number              | Object Literals     |
+| Boolean             | Functions           |
+| Null                | Dates               |
+| Undefined           | Anything Else..     |
+| Symbols (ES6)       | Content Cell        |
 
-``` javascript
-
+```javascript
 // Primitive Types
 
 //String
@@ -142,11 +135,9 @@ console.log(typeof animal); //undefined
 //Symbol
 const sym = Symbol();
 console.log(typeof sym); //symbol
-
 ```
 
-
-``` javascript
+```javascript
 // Reference Type - Objects
 //Array
 const hobbies = ["movies", "music", "coding"];
@@ -164,11 +155,11 @@ console.log(typeof address); //object
 const today = new Date();
 console.log(today);
 console.log(typeof today); // object
-
 ```
 
 ## Type Conversion
-``` javascript
+
+```javascript
 let val;
 val = 5;
 
@@ -176,11 +167,11 @@ val = 5;
 console.log(val); // 5
 console.log(typeof val); // number
 console.log(val.length); // undefined becasue length works with string
-
 ```
+
 ##### Number to string
 
-``` javascript
+```javascript
 let val;
 
 // Number to string
@@ -190,7 +181,6 @@ val = String(5);
 console.log(val); // 5
 console.log(typeof val); // string
 console.log(val.length); // 1
-
 ```
 
 ##### Boolean to string
@@ -205,7 +195,6 @@ val = String(true);
 console.log(val); // true
 console.log(typeof val); // string
 console.log(val.length); // 4
-
 ```
 
 ##### Date to string
@@ -220,10 +209,10 @@ val = String(new Date());
 console.log(val); // Thu Apr 09 2020 14:43:12 GMT-0700 (Pacific Daylight Time)
 console.log(typeof val); // string
 console.log(val.length); // 57
-
 ```
 
 ##### Array to string
+
 ```javascript
 let val;
 
@@ -234,10 +223,10 @@ val = String([1, 2, 3, 4, 5]);
 console.log(val); // 1,2,3,4,5
 console.log(typeof val); // string
 console.log(val.length); // 9
-
 ```
 
 ##### convert to number
+
 ```javascript
 let val;
 
@@ -285,9 +274,7 @@ val = parseFloat(5.35);
 console.log(val); // 5.35
 console.log(typeof val); // number
 console.log(val.toFixed(2)); // 5.35
-
 ```
-
 
 ### Math Object
 
@@ -321,19 +308,14 @@ val = Math.random() * 20; // random decimal number between 0-19, like 7.60158959
 val = Math.floor((val = Math.random() * 20));
 
 console.log(val);
-
-
 ```
 
-
 #### String Methods & Concatenation
-
-
-
 
 #### Template Literals (Template string)
 
 ##### Without template string (es5), old way
+
 ```javascript
 const name = "John Doe";
 const age = 30;
@@ -342,21 +324,36 @@ const city = "San Francisco";
 let html;
 
 // without template string (es5), old way
-html='<ul> <li>Name: '+ name +'</li> <li>Age: '+ age +'</li> <li>Job: '+ job +'</li> <li>City: '+ city +'</li> </ul>'
+html =
+  "<ul> <li>Name: " +
+  name +
+  "</li> <li>Age: " +
+  age +
+  "</li> <li>Job: " +
+  job +
+  "</li> <li>City: " +
+  city +
+  "</li> </ul>";
 
 // OR
 
-html='<ul>'+
-     '<li>Name: '+ name +'</li>'+
-     '<li>Age: '+ age +'</li>'+
-     '<li>Job: '+ job +'</li>'+
-     '<li>City: '+ city +'</li>'+
-     '</ul>';
+html =
+  "<ul>" +
+  "<li>Name: " +
+  name +
+  "</li>" +
+  "<li>Age: " +
+  age +
+  "</li>" +
+  "<li>Job: " +
+  job +
+  "</li>" +
+  "<li>City: " +
+  city +
+  "</li>" +
+  "</ul>";
 
-
-
-document.body.innerHTML=html;
-
+document.body.innerHTML = html;
 ```
 
 ##### With template string (es6)
@@ -379,7 +376,6 @@ html = `
 `;
 
 document.body.innerHTML = html;
-
 ```
 
 ##### Object Literal
@@ -412,7 +408,6 @@ val = person.address["state"];
 val = person.getBirthYear();
 
 console.log(val);
-
 ```
 
 ##### Array of Object
@@ -426,6 +421,4 @@ const perople = [
 ];
 
 console.log(perople);
-
 ```
->>>>>>> 2398bf1dae40e4cda0c1c27b5a0b7b541550a67c
