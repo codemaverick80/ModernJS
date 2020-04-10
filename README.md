@@ -9,3 +9,5 @@ Learning Modern JavaScript
 
 - Bracket Pair Colorizer 2
 - Prettier - Code formatter
+- JavaScript (ES6) code snippets
+- live Server
