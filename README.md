@@ -659,3 +659,146 @@ liList.forEach(function (li) {
   console.log(li.className);
 });
 ```
+
+#### Object Oriented JavaScript
+
+##### Constructor function & 'this' keyword (ES5)
+
+```javascript
+//to use this Person constructor function, we have to create new instance using new keyword
+function Person(name, dob) {
+  this.name = name;
+  this.birthday = new Date(dob);
+  this.calculateAge = function () {
+    const diff = Date.now() - this.birthday.getTime();
+    const ageDate = new Date(diff);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  };
+}
+
+// create instance of Person constructor function
+const john = new Person("John", "9-03-1930");
+
+console.log(john.calculateAge());
+
+console.log(john.name);
+
+// create another instance of Person construction function
+
+const mary = new Person("Mary", "March 20 1978");
+
+console.log(mary.calculateAge());
+
+console.log(may.name);
+```
+
+##### Prototype
+
+```javascript
+// Person constructor
+/*
+
+To create an instance of Person, we have to provide firstName, lastName and dob which are the properties of Person object.
+However calculateAge() function going to be the same for every instance of Person object. 
+This is something we can put inside prototype instead of putting directly inside the object.
+
+*/
+function Person(firstName, lastName, dob) {
+  this.firstName = firstName;
+
+  this.lastName = lastName;
+
+  this.birthday = new Date(dob);
+
+  /*
+  this.calculateAge = function () {
+    const diff = Date.now() - this.birthday.getTime();
+
+    const ageDate = new Date(diff);
+
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  };
+*/
+}
+
+// Putting calculateAge function inside prototype of Person
+Person.prototype.calculateAge = function () {
+  const diff = Date.now() - this.birthday.getTime();
+
+  const ageDate = new Date(diff);
+
+  return Math.abs(ageDate.getUTCFullYear() - 1981);
+};
+
+// Lets put getFullName function inside prototype of Person
+Person.prototype.getFullName = function () {
+  return `${this.firstName} ${this.lastName}`;
+};
+
+Person.prototype.getMarried = function (newLastName) {
+  this.lastName = newLastName;
+};
+
+const john = new Person("John", "Doe", "9-03-1930");
+
+//console.log(john);
+console.log(john.calculateAge());
+console.log(john.getFullName());
+
+const mary = new Person("Mary", "Johnson", "March 20 1987");
+
+//console.log(mary);
+console.log(mary.calculateAge());
+console.log(mary.getFullName()); //Mary Johnson
+mary.getMarried("Smith");
+console.log(mary.getFullName()); //Mary Smith
+
+console.log(mary.hasOwnProperty("firstName")); //true
+```
+
+##### Prototype Inheritance
+
+```javascript
+// Person constructor
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+
+  this.lastName = lastName;
+}
+
+Person.prototype.greeting = function () {
+  return `Hello  ${this.firstName} ${this.lastName}. Greeting from Person`;
+};
+
+const john = new Person("John", "Doe");
+console.log(john.greeting());
+
+// Customer constructor
+function Customer(firstName, lastName, phone, membership) {
+  Person.call(this, firstName, lastName);
+  this.phone = phone;
+  this.membership = membership;
+}
+
+//Inherit the Person prototype method
+Customer.prototype = Object.create(Person.prototype);
+
+// Make customer.prototype return Customer();
+
+Customer.prototype.constructor = Customer;
+
+// Create customer
+const customer1 = new Customer("Tom", "Smith", "555-333-5555", "Basic");
+console.log(customer1);
+console.log(customer1.greeting());
+
+//Overriding Person greeting method
+
+Customer.prototype.greeting = function () {
+  return `Hello ${this.firstName} ${this.lastName}. Greeting from Customer.`;
+};
+
+console.log(customer1.greeting()); //customer1.greeting is not a function
+```
+
+##### ES6 Classes
