@@ -727,7 +727,7 @@ Person.prototype.calculateAge = function () {
 
   const ageDate = new Date(diff);
 
-  return Math.abs(ageDate.getUTCFullYear() - 1981);
+  return Math.abs(ageDate.getUTCFullYear() - 1970);
 };
 
 // Lets put getFullName function inside prototype of Person
@@ -802,3 +802,68 @@ console.log(customer1.greeting()); //customer1.greeting is not a function
 ```
 
 ##### ES6 Classes
+
+```javascript
+//ES6 Classes
+class Person {
+  constructor(firstName, lastName, dob) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.birthday = new Date(dob);
+  }
+
+  greeting() {
+    return `Hello ${this.firstName} ${this.lastName}`;
+  }
+
+  calculateAge() {
+    const diff = Date.now() - this.birthday.getTime();
+
+    const ageDate = new Date(diff);
+
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+
+  //static mathod
+  static addNumber(x, y) {
+    return x + y;
+  }
+}
+
+const mary = new Person("Mary", "Williams", "11-13-1980");
+console.log(mary.greeting());
+console.log(mary.calculateAge());
+
+// calling static method
+console.log(Person.addNumber(5, 4));
+```
+
+##### ES6 Sub Classes (Inheritance)
+
+```javascript
+//ES6 Sub Classes (Inheritance)
+class Person {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  greeting() {
+    return `Hello ${this.firstName} ${this.lastName}`;
+  }
+}
+
+// Customer inherit from Person
+class Customer extends Person {
+  constructor(firstName, lastName, phone, membership) {
+    super(firstName, lastName);
+
+    this.phone = phone;
+    this.membership = membership;
+  }
+}
+
+const john = new Customer("John", "Doe", "552-444-7845", "Basic");
+console.log(john);
+console.log(john.greeting());
+```
