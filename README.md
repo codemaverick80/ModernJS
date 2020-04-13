@@ -1538,7 +1538,7 @@ console.log(nameLenghts);
 </html>
 ```
 
-`easyHTTP.js`
+`easyHTTP2.js`
 
 ```javascript
 /**
