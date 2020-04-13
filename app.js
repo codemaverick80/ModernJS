@@ -1,72 +1,72 @@
-const http = new easyHTTP();
+//Get Text button (local text file data)
+document.getElementById('button1').addEventListener('click', getText);
 
-////Get Posts
-// http.get('https://jsonplaceholder.typicode.com/posts', callback);
+function getText() {
+  fetch('text.txt')
+    .then(function (response) {
+      //console.log(response);
+      //console.log(response.text()); //returns Promise
+      return response.text();
+    })
+    .then(function (data) {
+      console.log(data);
 
-// function callback(error, response) {
-//   if (error) {
-//     console.log(error);
-//   } else {
-//     console.log(response);
-//   }
-// }
+      document.getElementById('output').innerHTML = data;
+    })
+    .catch(function (error) {
+      console.log(error);
+      document.getElementById('output').innerHTML = error;
+    });
+}
 
-////Get  single Post
-// http.get('https://jsonplaceholder.typicode.com/posts/1', callback);
+//// Get Json button (local Json file data)
+document.getElementById('button2').addEventListener('click', getJson);
 
-// function callback(error, response) {
-//   if (error) {
-//     console.log(error);
-//   } else {
-//     console.log(response);
-//   }
-// }
+function getJson() {
+  fetch('posts.json')
+    .then(function (response) {
+      //console.log(response);
+      //console.log(response.json()); //returns Promise
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
 
-////Create Post
+      let output = '';
+      data.forEach(function (post) {
+        output += `<li>Id : ${post.id}, Title : ${post.title}, Body: ${post.body}</li>`;
+      });
 
-//// create data
-// const data = {
-//   title: 'test post',
-//   body: 'this is a test post',
-// };
+      document.getElementById('output').innerHTML = output;
+    })
+    .catch(function (error) {
+      console.log(error);
+      document.getElementById('output').innerHTML = error;
+    });
+}
 
-// http.post('https://jsonplaceholder.typicode.com/posts', data, function (
-//   error,
-//   response
-// ) {
-//   if (error) {
-//     console.log(error);
-//   } else {
-//     console.log(response);
-//   }
-// });
+//// Get API button (External data)
+document.getElementById('button3').addEventListener('click', getGithubUsers);
 
-//// Update post
+function getGithubUsers() {
+  fetch('https://api.github.com/users')
+    .then(function (response) {
+      //console.log(response);
+      //console.log(response.json()); //returns Promise
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
 
-// const dataForUpdate = {
-//   title: 'test post',
-//   body: 'this is updated post',
-// };
+      let output = '';
+      data.forEach(function (user) {
+        output += `<li>User Login : ${user.login} Url: ${user.html_url}</li>`;
+      });
 
-// http.put(
-//   'https://jsonplaceholder.typicode.com/posts/1',
-//   dataForUpdate,
-//   function (error, response) {
-//     if (error) {
-//       console.log(error);
-//     } else {
-//       console.log(response);
-//     }
-//   }
-// );
-
-//// Delete post
-// http.delete('https://jsonplaceholder.typicode.com/posts/1', callback);
-
-// function callback(error, response) {
-//   if (error) {
-//     console.log(error);
-//   } else {
-//     console.log(response);
-//   }
-// }
+      document.getElementById('output').innerHTML = output;
+    })
+    .catch(function (error) {
+      console.log(error);
+      document.getElementById('output').innerHTML = error;
+    });
+}

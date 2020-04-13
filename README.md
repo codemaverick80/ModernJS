@@ -1057,7 +1057,7 @@ createPost(
 );
 ```
 
-##### Custom HTTP Library (Ajax with callback)
+#### Custom HTTP Library (Ajax with callback)
 
 Create a new file called `easyHTTP.js`
 
@@ -1211,5 +1211,196 @@ function callback(error, response) {
   } else {
     console.log(response);
   }
+}
+```
+
+#### ES6 Promises (without callback)
+
+```javascript
+const posts = [
+  { id: 1, title: 'Post One', body: 'This is post one' },
+  { id: 2, title: 'Post Two', body: 'This is post two' },
+];
+
+function createPost(post) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      posts.push(post);
+
+      //just for testing purpose
+      const error = true;
+
+      if (!error) {
+        resolve();
+      } else {
+        reject('Error: Something went wrong');
+      }
+    }, 2000);
+  });
+}
+
+function getPosts() {
+  setTimeout(function () {
+    let output = '';
+    posts.forEach(function (post) {
+      output += post.title + '\n';
+    });
+    console.log(output);
+  }, 1000);
+}
+
+createPost({ id: 3, title: 'Post Three', body: 'This is post three' })
+  .then(getPosts)
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+### ES6 Fetch API
+
+`index.html'
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"
+    />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <title>Modern Javascript</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Fetch API Example</h2>
+      <button id="button1" class="btn">Get Text</button>
+      <button id="button2" class="btn">Get JSON</button>
+      <button id="button3" class="btn">Get API Data</button>
+      <br /><br />
+      <div id="output"></div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.js"
+      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+```
+
+`text.txt'
+
+```
+This is a sample text file.
+```
+
+`posts.json`
+
+```json
+[
+  {
+    "id": 1,
+    "title": "Post One",
+    "body": "This is post one"
+  },
+  {
+    "id": 2,
+    "title": "Post Two",
+    "body": "This is post two"
+  },
+  {
+    "id": 3,
+    "title": "Post Three",
+    "body": "This is post Three"
+  }
+]
+```
+
+`app.js'
+
+```javascript
+//Get Text button (local text file data)
+document.getElementById('button1').addEventListener('click', getText);
+
+function getText() {
+  fetch('text.txt')
+    .then(function (response) {
+      //console.log(response);
+      //console.log(response.text()); //returns Promise
+      return response.text();
+    })
+    .then(function (data) {
+      console.log(data);
+
+      document.getElementById('output').innerHTML = data;
+    })
+    .catch(function (error) {
+      console.log(error);
+      document.getElementById('output').innerHTML = error;
+    });
+}
+
+//// Get Json button (local Json file data)
+document.getElementById('button2').addEventListener('click', getJson);
+
+function getJson() {
+  fetch('posts.json')
+    .then(function (response) {
+      //console.log(response);
+      //console.log(response.json()); //returns Promise
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+
+      let output = '';
+      data.forEach(function (post) {
+        output += `<li>Id : ${post.id}, Title : ${post.title}, Body: ${post.body}</li>`;
+      });
+
+      document.getElementById('output').innerHTML = output;
+    })
+    .catch(function (error) {
+      console.log(error);
+      document.getElementById('output').innerHTML = error;
+    });
+}
+
+//// Get API button (External data)
+document.getElementById('button3').addEventListener('click', getGithubUsers);
+
+function getGithubUsers() {
+  fetch('https://api.github.com/users')
+    .then(function (response) {
+      //console.log(response);
+      //console.log(response.json()); //returns Promise
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+
+      let output = '';
+      data.forEach(function (user) {
+        output += `<li>User Login : ${user.login} Url: ${user.html_url}</li>`;
+      });
+
+      document.getElementById('output').innerHTML = output;
+    })
+    .catch(function (error) {
+      console.log(error);
+      document.getElementById('output').innerHTML = error;
+    });
 }
 ```
