@@ -1258,6 +1258,8 @@ createPost({ id: 3, title: 'Post Three', body: 'This is post three' })
 
 ### ES6 Fetch API
 
+##### Fetch Api returns promises
+
 `index.html'
 
 ```html
@@ -1328,7 +1330,7 @@ This is a sample text file.
 ]
 ```
 
-`app.js'
+`app.js`
 
 ```javascript
 //Get Text button (local text file data)
