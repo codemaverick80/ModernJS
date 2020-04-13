@@ -1406,3 +1406,241 @@ function getGithubUsers() {
     });
 }
 ```
+
+#### Fetch Error Handling
+
+```javascript
+//// Get Json button (local Json file data)
+document.getElementById('button2').addEventListener('click', getJson);
+
+function getJson() {
+  fetch('posts.json')
+    .then(handleErrors)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(displayOnDiv)
+    .catch(function (error) {
+      console.log(error);
+      document.getElementById('output').innerHTML = error;
+    });
+}
+
+function handleErrors(response) {
+  if (!response.ok) throw new Error(response.statusText);
+  return response;
+}
+
+function displayOnDiv(response) {
+  console.log(response);
+  let output = '';
+  response.forEach(function (post) {
+    output += `<li>Id : ${post.id}, Title : ${post.title}, Body: ${post.body}</li>`;
+  });
+  document.getElementById('output').innerHTML = output;
+}
+```
+
+#### Arrow Functions
+
+```javascript
+// const sayHello=function(){
+//   console.log('hello');
+// }
+
+//// OR
+
+const sayHello = () => console.log('hello');
+
+//// returing value
+
+// const getNumber = function () {
+//   return 5;
+// };
+
+//// OR
+
+const getNumber = () => 5;
+
+// passing parameters and return value
+
+// const addNumbers = function (a, b) {
+//   return a + b;
+// };
+
+////OR
+
+////NOTE: single param does not need parenthesis but multiple param does.
+const addNumbers = (a, b) => a + b;
+
+//// Return Object literal ({name:'John'})
+
+const getObject = () => ({ name: 'John' });
+
+const users = ['John', 'William', 'Mark', 'Scott'];
+// const nameLenghts = users.map(function (name) {
+//   return name.length;
+// });
+
+//// OR
+const nameLenghts = users.map(name => name.length);
+
+sayHello();
+console.log(getNumber());
+console.log(addNumbers(5, 6));
+console.log(getObject());
+
+console.log(nameLenghts);
+```
+
+#### Custom HTTP Library (Fetch and Promises)
+
+`index.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"
+    />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <title>Modern Javascript</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Fetch API Example</h2>
+      <button id="button1" class="btn">Get Text</button>
+      <button id="button2" class="btn">Get JSON</button>
+      <button id="button3" class="btn">Get API Data</button>
+      <br /><br />
+      <div id="output"></div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.js"
+      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script src="easyHTTP2.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
+```
+
+`easyHTTP.js`
+
+```javascript
+/**
+ * EasyHTTP Library
+ * Library for making HTTP requests
+ *
+ * @version 2.0.0
+ * @author Harish Chand
+ * @license MIT
+ *
+ */
+
+class EasyHTTP {
+  // Make http GET request
+  get(url) {
+    return new Promise((resolve, reject) => {
+      fetch(url)
+        .then(res => res.json())
+        .then(data => resolve(data))
+        .catch(err => reject(err));
+    });
+  }
+
+  // Make http POST request
+
+  post(url, data) {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+        .then(res => res.json())
+        .then(data => resolve(data))
+        .catch(err => reject(err));
+    });
+  }
+
+  // Make http PUT request
+
+  put(url, data) {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'PUT',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+        .then(res => res.json())
+        .then(data => resolve(data))
+        .catch(err => reject(err));
+    });
+  }
+
+  // Make http DELETE request
+
+  delete(url) {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'delete',
+        headers: { 'Content-type': 'application/json' },
+      })
+        .then(res => res.json())
+        .then(data => resolve('Resource Deleted'))
+        .catch(err => reject(err));
+    });
+  }
+}
+```
+
+`app.js'
+
+```javascript
+const http = new EasyHTTP();
+
+////Get Users  ()
+http
+  .get('https://jsonplaceholder.typicode.com/users')
+  .then(data => console.log(data))
+  .catch(err => console.log(err));
+
+//// user data for POST and PUT
+const data = {
+  name: 'John Doe',
+  email: 'john@email.com',
+  username: 'johndoe',
+};
+
+////POST Users
+http
+  .post('https://jsonplaceholder.typicode.com/users', data)
+  .then(data => console.log(data))
+  .catch(err => console.log(err));
+
+////Update Users
+http
+  .put('https://jsonplaceholder.typicode.com/users/2', data)
+  .then(data => console.log(data))
+  .catch(err => console.log(err));
+
+//// DELETE User
+http
+  .delete('https://jsonplaceholder.typicode.com/users/2')
+  .then(data => console.log(data))
+  .catch(err => console.log(err));
+```
