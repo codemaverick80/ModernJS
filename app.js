@@ -1,48 +1,72 @@
-//#### Asynchronous Javascript, Ajax & Fetch
-document.querySelector(".get-jokes").addEventListener("click", getJokes);
+const http = new easyHTTP();
 
-function getJokes(e) {
-  //http://www.icndb.com/api/
-  //api: http://api.icndb.com/jokes/random/2
+////Get Posts
+// http.get('https://jsonplaceholder.typicode.com/posts', callback);
 
-  const number = document.querySelector('input[type="number').value;
+// function callback(error, response) {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log(response);
+//   }
+// }
 
-  const xhr = new XMLHttpRequest();
+////Get  single Post
+// http.get('https://jsonplaceholder.typicode.com/posts/1', callback);
 
-  xhr.open("GET", `http://api.icndb.com/jokes/random/${number}`, true);
+// function callback(error, response) {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log(response);
+//   }
+// }
 
-  xhr.onload = function () {
-    if (this.status === 200) {
-      const response = JSON.parse(this.responseText);
+////Create Post
 
-      let output = "";
+//// create data
+// const data = {
+//   title: 'test post',
+//   body: 'this is a test post',
+// };
 
-      if (response.type === "success") {
-        response.value.forEach(function (joke) {
-          output += `<li class='collection-item'>${joke.joke}</li>`;
-        });
-      } else {
-        output += `<li>Something went wrong</li>`;
-      }
+// http.post('https://jsonplaceholder.typicode.com/posts', data, function (
+//   error,
+//   response
+// ) {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log(response);
+//   }
+// });
 
-      document.querySelector(".jokes").innerHTML = output;
+//// Update post
 
-      console.log(response);
-    }
-  };
+// const dataForUpdate = {
+//   title: 'test post',
+//   body: 'this is updated post',
+// };
 
-  xhr.send();
-  e.preventDefault();
-}
+// http.put(
+//   'https://jsonplaceholder.typicode.com/posts/1',
+//   dataForUpdate,
+//   function (error, response) {
+//     if (error) {
+//       console.log(error);
+//     } else {
+//       console.log(response);
+//     }
+//   }
+// );
 
-/*
+//// Delete post
+// http.delete('https://jsonplaceholder.typicode.com/posts/1', callback);
 
-{
-"type": "success",
-"value": [
-    {"id": 597,"joke": "Once death had a near Chuck Norris experience.","categories": []},
-    {"id": 554,"joke": "Chuck Norris can install a 64 bit OS on 32 bit machines.","categories": ["nerdy"]}
-  ]
-}
-
-*/
+// function callback(error, response) {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log(response);
+//   }
+// }

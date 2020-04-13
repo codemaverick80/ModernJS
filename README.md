@@ -20,16 +20,16 @@ Learning Modern JavaScript
 #### var
 
 ```javascript
-var name = "John Doe";
+var name = 'John Doe';
 console.log(name);
 
-name = "Scott";
+name = 'Scott';
 console.log(name);
 
 //Init var
 var greeting;
 console.log(greeting); //undefined
-greeting = "Hello";
+greeting = 'Hello';
 console.log(greeting);
 ```
 
@@ -37,9 +37,9 @@ console.log(greeting);
 
 ```javascript
 let name;
-name = "John Doe";
+name = 'John Doe';
 console.log(name);
-name = "Smith";
+name = 'Smith';
 console.log(name);
 ```
 
@@ -113,7 +113,7 @@ console.log(numbers);
 // Primitive Types
 
 //String
-const name = "John Doe";
+const name = 'John Doe';
 console.log(typeof name); //string
 
 //Number
@@ -140,14 +140,14 @@ console.log(typeof sym); //symbol
 ```javascript
 // Reference Type - Objects
 //Array
-const hobbies = ["movies", "music", "coding"];
+const hobbies = ['movies', 'music', 'coding'];
 console.log(typeof hobbies); //object
 
 //Object Literal
 const address = {
-  street: "42 South Ave",
-  city: "San Francisco",
-  state: "CA",
+  street: '42 South Ave',
+  city: 'San Francisco',
+  state: 'CA',
 };
 console.log(typeof address); //object
 
@@ -254,7 +254,7 @@ console.log(typeof val); // number
 console.log(val.toFixed()); // 0
 
 // string to number
-val = Number("hello");
+val = Number('hello');
 console.log(val); // NaN
 console.log(typeof val); // number
 console.log(val.toFixed()); // NaN
@@ -317,41 +317,41 @@ console.log(val);
 ##### Without template string (es5), old way
 
 ```javascript
-const name = "John Doe";
+const name = 'John Doe';
 const age = 30;
-const job = "Web Development";
-const city = "San Francisco";
+const job = 'Web Development';
+const city = 'San Francisco';
 let html;
 
 // without template string (es5), old way
 html =
-  "<ul> <li>Name: " +
+  '<ul> <li>Name: ' +
   name +
-  "</li> <li>Age: " +
+  '</li> <li>Age: ' +
   age +
-  "</li> <li>Job: " +
+  '</li> <li>Job: ' +
   job +
-  "</li> <li>City: " +
+  '</li> <li>City: ' +
   city +
-  "</li> </ul>";
+  '</li> </ul>';
 
 // OR
 
 html =
-  "<ul>" +
-  "<li>Name: " +
+  '<ul>' +
+  '<li>Name: ' +
   name +
-  "</li>" +
-  "<li>Age: " +
+  '</li>' +
+  '<li>Age: ' +
   age +
-  "</li>" +
-  "<li>Job: " +
+  '</li>' +
+  '<li>Job: ' +
   job +
-  "</li>" +
-  "<li>City: " +
+  '</li>' +
+  '<li>City: ' +
   city +
-  "</li>" +
-  "</ul>";
+  '</li>' +
+  '</ul>';
 
 document.body.innerHTML = html;
 ```
@@ -359,10 +359,10 @@ document.body.innerHTML = html;
 ##### With template string (es6)
 
 ```javascript
-const name = "John Doe";
+const name = 'John Doe';
 const age = 30;
-const job = "Web Development";
-const city = "San Francisco";
+const job = 'Web Development';
+const city = 'San Francisco';
 let html;
 
 // with template string (es6)
@@ -388,13 +388,13 @@ document.body.innerHTML = html;
 
 ```javascript
 const person = {
-  firstName: "John",
-  lastName: "Doe",
+  firstName: 'John',
+  lastName: 'Doe',
   age: 36,
-  hobbies: ["music", "movies", "coding"],
+  hobbies: ['music', 'movies', 'coding'],
   address: {
-    city: "San Francisco",
-    state: "CA",
+    city: 'San Francisco',
+    state: 'CA',
   },
   getBirthYear: function () {
     return 2020 - this.age;
@@ -404,13 +404,13 @@ const person = {
 let val;
 val = person;
 val = person.firstName;
-val = person["firstName"];
+val = person['firstName'];
 val = person.age;
 val = person.hobbies;
 val = person.hobbies[1];
 val = person.address;
 val = person.address.city;
-val = person.address["state"];
+val = person.address['state'];
 val = person.getBirthYear();
 
 console.log(val);
@@ -420,10 +420,10 @@ console.log(val);
 
 ```javascript
 const perople = [
-  { name: "John", age: 36 },
-  { name: "Mike", age: 32 },
-  { name: "Sally", age: 35 },
-  { name: "Scott", age: 28 },
+  { name: 'John', age: 36 },
+  { name: 'Mike', age: 32 },
+  { name: 'Sally', age: 35 },
+  { name: 'Scott', age: 28 },
 ];
 
 console.log(perople);
@@ -454,7 +454,7 @@ console.log(perople);
 ```javascript
 //Function declarations
 function greet() {
-  return "Hello";
+  return 'Hello';
 }
 // calling function
 greet();
@@ -464,31 +464,31 @@ greet();
 
 ```javascript
 function fullName(fname, lname) {
-  if (typeof fname === "undefined") {
-    fname = "John";
+  if (typeof fname === 'undefined') {
+    fname = 'John';
   }
-  if (typeof lname === "undefined") {
-    lname = "Doe";
+  if (typeof lname === 'undefined') {
+    lname = 'Doe';
   }
 
-  return fname + " " + lname;
+  return fname + ' ' + lname;
 }
 
 //calling
 fullName();
-fullName("Mark", "smith");
+fullName('Mark', 'smith');
 ```
 
 ###### Function Parameters (with ES6)
 
 ```javascript
-function fullName(fname = "John", lname = "Doe") {
-  return fname + " " + lname;
+function fullName(fname = 'John', lname = 'Doe') {
+  return fname + ' ' + lname;
 }
 
 //calling
 fullName();
-fullName("Mark", "smith");
+fullName('Mark', 'smith');
 ```
 
 ###### Function Expression
@@ -512,18 +512,18 @@ square(8);
 
 ```javascript
 (function () {
-  console.log("IIFE Ran...");
+  console.log('IIFE Ran...');
 })();
 
 (function (name) {
-  console.log("Hello" + name);
-})("Brad");
+  console.log('Hello' + name);
+})('Brad');
 
 // Property Methods
 //Note: when a function is put inside of an object is called method
 const todo = {
   add: function () {
-    console.log("Add todo...");
+    console.log('Add todo...');
   },
   edit: function (id) {
     console.log(`Edit todo ${id}`);
@@ -531,7 +531,7 @@ const todo = {
 };
 
 todo.delete = function () {
-  console.log("Delete todo...");
+  console.log('Delete todo...');
 };
 
 todo.add();
@@ -543,7 +543,7 @@ todo.delete();
 
 ```javascript
 // FOR loop
-const cars = ["Honda", "Toyota", "Nissan", "Subaru", "Ford", "Chevy"];
+const cars = ['Honda', 'Toyota', 'Nissan', 'Subaru', 'Ford', 'Chevy'];
 
 for (let i = 0; i < cars.length; i++) {
   console.log(cars[i]);
@@ -562,11 +562,11 @@ cars.forEach(function (car, index, cars) {
 
 // MAP (array of objects)
 const people = [
-  { id: 101, name: "Sam" },
-  { id: 102, name: "Mark" },
-  { id: 103, name: "John" },
-  { id: 104, name: "Mike" },
-  { id: 105, name: "Smith" },
+  { id: 101, name: 'Sam' },
+  { id: 102, name: 'Mark' },
+  { id: 103, name: 'John' },
+  { id: 104, name: 'Mike' },
+  { id: 105, name: 'Smith' },
 ];
 
 const ids = people.map(function (person) {
@@ -578,8 +578,8 @@ console.log(ids);
 // FOR IN loop (used for loop through an object)
 
 const user = {
-  firstName: "John",
-  lastName: "Doe",
+  firstName: 'John',
+  lastName: 'Doe',
   age: 38,
 };
 
@@ -598,56 +598,56 @@ for (let x in user) {
 
 ```javascript
 // DOM Selectors for single elements (getElementById())
-console.log(document.getElementById("task-title"));
+console.log(document.getElementById('task-title'));
 
 //Get things from the element
-console.log(document.getElementById("task-title").id);
-console.log(document.getElementById("task-title").className);
+console.log(document.getElementById('task-title').id);
+console.log(document.getElementById('task-title').className);
 
 //change styling
-console.log((document.getElementById("task-title").style.background = "#333"));
-console.log((document.getElementById("task-title").style.color = "#ffffff"));
+console.log((document.getElementById('task-title').style.background = '#333'));
+console.log((document.getElementById('task-title').style.color = '#ffffff'));
 
 // Change content
-console.log((document.getElementById("task-title").textContent = "Task List"));
-console.log((document.getElementById("task-title").innerText = "My List"));
+console.log((document.getElementById('task-title').textContent = 'Task List'));
+console.log((document.getElementById('task-title').innerText = 'My List'));
 console.log(
-  (document.getElementById("task-title").innerHTML =
+  (document.getElementById('task-title').innerHTML =
     '<span style="color:red">Task List</span>')
 );
 
 // DOM Selectors for single elements (querySelector())
 
-console.log(document.querySelector("#task-title"));
-console.log(document.querySelector(".card-title"));
+console.log(document.querySelector('#task-title'));
+console.log(document.querySelector('.card-title'));
 
 //Get things from the element
-console.log((document.querySelector("li").style.color = "red"));
-console.log((document.querySelector("ul li").style.color = "blue"));
+console.log((document.querySelector('li').style.color = 'red'));
+console.log((document.querySelector('ul li').style.color = 'blue'));
 
-console.log((document.querySelector("li:last-child").style.color = "red"));
-console.log((document.querySelector("li:nth-child(3)").style.color = "yellow"));
+console.log((document.querySelector('li:last-child').style.color = 'red'));
+console.log((document.querySelector('li:nth-child(3)').style.color = 'yellow'));
 console.log(
-  (document.querySelector("li:nth-child(4)").textContent = "hello World")
+  (document.querySelector('li:nth-child(4)').textContent = 'hello World')
 );
 
 console.log(
-  (document.querySelector("li:nth-child(odd)").style.background = "#ccc")
+  (document.querySelector('li:nth-child(odd)').style.background = '#ccc')
 );
 
 // DOM Selectors for multiple elements (getElementsByClassName())
 
-const items = document.getElementsByClassName("collection-item");
+const items = document.getElementsByClassName('collection-item');
 console.log(items);
 console.log(items[0]);
 
 const listItems = document
-  .querySelector("ul")
-  .getElementsByClassName("collection-item");
+  .querySelector('ul')
+  .getElementsByClassName('collection-item');
 console.log(listItems);
 
 // DOM Selectors for multiple elements (getElementsByTagName())
-let liList = document.getElementsByTagName("li");
+let liList = document.getElementsByTagName('li');
 console.log(liList);
 console.log(liList[1]);
 
@@ -677,7 +677,7 @@ function Person(name, dob) {
 }
 
 // create instance of Person constructor function
-const john = new Person("John", "9-03-1930");
+const john = new Person('John', '9-03-1930');
 
 console.log(john.calculateAge());
 
@@ -685,7 +685,7 @@ console.log(john.name);
 
 // create another instance of Person construction function
 
-const mary = new Person("Mary", "March 20 1978");
+const mary = new Person('Mary', 'March 20 1978');
 
 console.log(mary.calculateAge());
 
@@ -739,21 +739,21 @@ Person.prototype.getMarried = function (newLastName) {
   this.lastName = newLastName;
 };
 
-const john = new Person("John", "Doe", "9-03-1930");
+const john = new Person('John', 'Doe', '9-03-1930');
 
 //console.log(john);
 console.log(john.calculateAge());
 console.log(john.getFullName());
 
-const mary = new Person("Mary", "Johnson", "March 20 1987");
+const mary = new Person('Mary', 'Johnson', 'March 20 1987');
 
 //console.log(mary);
 console.log(mary.calculateAge());
 console.log(mary.getFullName()); //Mary Johnson
-mary.getMarried("Smith");
+mary.getMarried('Smith');
 console.log(mary.getFullName()); //Mary Smith
 
-console.log(mary.hasOwnProperty("firstName")); //true
+console.log(mary.hasOwnProperty('firstName')); //true
 ```
 
 ##### Prototype Inheritance
@@ -770,7 +770,7 @@ Person.prototype.greeting = function () {
   return `Hello  ${this.firstName} ${this.lastName}. Greeting from Person`;
 };
 
-const john = new Person("John", "Doe");
+const john = new Person('John', 'Doe');
 console.log(john.greeting());
 
 // Customer constructor
@@ -788,7 +788,7 @@ Customer.prototype = Object.create(Person.prototype);
 Customer.prototype.constructor = Customer;
 
 // Create customer
-const customer1 = new Customer("Tom", "Smith", "555-333-5555", "Basic");
+const customer1 = new Customer('Tom', 'Smith', '555-333-5555', 'Basic');
 console.log(customer1);
 console.log(customer1.greeting());
 
@@ -830,7 +830,7 @@ class Person {
   }
 }
 
-const mary = new Person("Mary", "Williams", "11-13-1980");
+const mary = new Person('Mary', 'Williams', '11-13-1980');
 console.log(mary.greeting());
 console.log(mary.calculateAge());
 
@@ -863,7 +863,7 @@ class Customer extends Person {
   }
 }
 
-const john = new Customer("John", "Doe", "552-444-7845", "Basic");
+const john = new Customer('John', 'Doe', '552-444-7845', 'Basic');
 console.log(john);
 console.log(john.greeting());
 ```
@@ -930,7 +930,7 @@ console.log(john.greeting());
 ```
 
 ```javascript
-document.querySelector(".get-jokes").addEventListener("click", getJokes);
+document.querySelector('.get-jokes').addEventListener('click', getJokes);
 
 function getJokes(e) {
   //http://www.icndb.com/api/
@@ -940,15 +940,15 @@ function getJokes(e) {
 
   const xhr = new XMLHttpRequest();
 
-  xhr.open("GET", `http://api.icndb.com/jokes/random/${number}`, true);
+  xhr.open('GET', `http://api.icndb.com/jokes/random/${number}`, true);
 
   xhr.onload = function () {
     if (this.status === 200) {
       const response = JSON.parse(this.responseText);
 
-      let output = "";
+      let output = '';
 
-      if (response.type === "success") {
+      if (response.type === 'success') {
         response.value.forEach(function (joke) {
           output += `<li class='collection-item'>${joke.joke}</li>`;
         });
@@ -956,7 +956,7 @@ function getJokes(e) {
         output += `<li>Something went wrong</li>`;
       }
 
-      document.querySelector(".jokes").innerHTML = output;
+      document.querySelector('.jokes').innerHTML = output;
 
       console.log(response);
     }
@@ -977,4 +977,239 @@ function getJokes(e) {
 }
 
 */
+```
+
+##### Callback function
+
+```javascript
+/*
+Callback is a function that's passed in as a parameter to another function and then it's ran inside the function body.
+*/
+
+const fruits = ['apple', 'banana', 'mango', 'orange'];
+
+/*
+fruits.forEach(function (item) {
+  console.log(item);
+});
+console.log('Done');
+OR
+*/
+
+function callback(item) {
+  console.log(item);
+}
+
+fruits.forEach(callback);
+console.log('Done');
+```
+
+##### Asynchronous Callback
+
+```javascript
+const posts = [
+  { id: 1, title: 'Post One', body: 'This is post one' },
+  { id: 2, title: 'Post Two', body: 'This is post two' },
+];
+
+//// without callback
+// function createPost(post) {
+//   setTimeout(function () {
+//     posts.push(post);
+//   }, 2000);
+// }
+
+// function getPosts() {
+//   setTimeout(function () {
+//     let output = '';
+//     posts.forEach(function (post) {
+//       output += post.title + '\n';
+//     });
+//     console.log(output);
+//   }, 1000);
+// }
+
+// createPost({ id: 3, title: 'Post Three', body: 'This is post three' });
+
+// getPosts();
+
+////with callback
+function createPost(post, callback) {
+  setTimeout(function () {
+    posts.push(post);
+    callback();
+  }, 2000);
+}
+
+function getPosts() {
+  setTimeout(function () {
+    let output = '';
+    posts.forEach(function (post) {
+      output += post.title + '\n';
+    });
+    console.log(output);
+  }, 1000);
+}
+
+createPost(
+  { id: 3, title: 'Post Three', body: 'This is post three' },
+  getPosts
+);
+```
+
+##### Custom HTTP Library (Ajax with callback)
+
+Create a new file called `easyHTTP.js`
+
+Fake api for out testing https://jsonplaceholder.typicode.com/
+
+```javascript
+function easyHTTP() {
+  this.http = new XMLHttpRequest();
+}
+
+//Make an HTTP GET Request
+easyHTTP.prototype.get = function (url, callback) {
+  this.http.open('GET', url, true);
+
+  let self = this;
+
+  this.http.onload = function () {
+    if (self.http.status === 200) {
+      //console.log(self.http.responseText);
+      callback(null, self.http.responseText);
+    } else {
+      callback('Error ' + self.http.status);
+    }
+  };
+
+  this.http.send();
+};
+
+////Make an HTTP POST Request
+
+easyHTTP.prototype.post = function (url, data, callback) {
+  this.http.open('POST', url, true);
+  this.http.setRequestHeader('Content-type', 'application/json;charset=UTF-8');
+
+  let self = this;
+
+  this.http.onload = function () {
+    callback(null, self.http.responseText);
+  };
+
+  // send data as json
+  this.http.send(JSON.stringify(data));
+};
+
+////Make an HTTP PUT Request
+
+easyHTTP.prototype.put = function (url, data, callback) {
+  this.http.open('PUT', url, true);
+  this.http.setRequestHeader('Content-type', 'application/json;charset=UTF-8');
+
+  let self = this;
+
+  this.http.onload = function () {
+    callback(null, self.http.responseText);
+  };
+
+  // send data as json
+  this.http.send(JSON.stringify(data));
+};
+
+////Make an HTTP DELETE Request
+
+easyHTTP.prototype.delete = function (url, callback) {
+  this.http.open('DELETE', url, true);
+
+  let self = this;
+
+  this.http.onload = function () {
+    if (self.http.status === 200) {
+      callback(null, 'post deleted');
+    } else {
+      callback('Error ' + self.http.status);
+    }
+  };
+
+  this.http.send();
+};
+```
+
+Update `app.js`
+
+```javascript
+const http = new easyHTTP();
+
+////Get Posts
+http.get('https://jsonplaceholder.typicode.com/posts', callback);
+
+function callback(error, response) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(response);
+  }
+}
+
+////Get  single Post
+http.get('https://jsonplaceholder.typicode.com/posts/1', callback);
+
+function callback(error, response) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(response);
+  }
+}
+
+////Create Post
+
+//// create data
+const data = {
+  title: 'test post',
+  body: 'this is a test post',
+};
+
+http.post('https://jsonplaceholder.typicode.com/posts', data, function (
+  error,
+  response
+) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(response);
+  }
+});
+
+//// Update post
+
+const dataForUpdate = {
+  title: 'test post',
+  body: 'this is updated post',
+};
+
+http.put(
+  'https://jsonplaceholder.typicode.com/posts/1',
+  dataForUpdate,
+  function (error, response) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(response);
+    }
+  }
+);
+
+//// Delete post
+http.delete('https://jsonplaceholder.typicode.com/posts/1', callback);
+
+function callback(error, response) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(response);
+  }
+}
 ```
