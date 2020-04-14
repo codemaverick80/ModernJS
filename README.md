@@ -1256,9 +1256,401 @@ createPost({ id: 3, title: 'Post Three', body: 'This is post three' })
   });
 ```
 
+#### ES6 promises
+
+```javascript
+let myFirstPromise = new Promise((resolve, reject) => {
+  // promise should either be resolve ot reject otherwise it will be in pending status and its value will be undefined
+});
+
+console.log(myFirstPromise);
+
+/**
+ * Promise {<pending>}
+__proto__: Promise
+[[PromiseStatus]]: "pending"
+[[PromiseValue]]: undefined
+ */
+
+let myFirstPromise = new Promise((resolve, reject) => {
+  resolve('this is my value');
+});
+
+console.log(myFirstPromise);
+
+/**
+ * 
+ Promise {<resolved>: "this is my value"}
+__proto__: Promise
+[[PromiseStatus]]: "resolved"
+[[PromiseValue]]: "this is my value"
+*
+*/
+```
+
+```javascript
+let myPromise = new Promise((resolve, reject) => {
+  // let response = fetch('https://api.github.com/users').then(res => res.json());
+  // resolve(response);
+
+  resolve(
+    fetch('https://api.github.com/users')
+      .then(res => res.json())
+      .catch(err => err)
+  );
+});
+
+myPromise
+  .then(function (value) {
+    // console.log(Array.isArray(value));
+    if (Array.isArray(value)) {
+      value.forEach(user => {
+        console.log('login :' + user.login + ', github url:' + user.html_url);
+      });
+    } else {
+      console.log(value);
+    }
+  })
+  .catch(function (err) {
+    console.log(err);
+  });
+```
+
+#### ES6 promises chain structure
+
+##### Sample calculation example with Promise (v1)
+
+```javascript
+let x = 10;
+
+const add = function (num) {
+  return new Promise(function (resolve, reject) {
+    let result = num + 10;
+    if (isNaN(result)) {
+      reject('Add() => not a number');
+    } else {
+      resolve(num + 10);
+    }
+  });
+};
+
+const multi = function (num) {
+  return new Promise(function (resolve, reject) {
+    let result = num * 10;
+    if (isNaN(result)) {
+      reject('Multi() => not a number');
+    } else {
+      resolve(num * 10);
+    }
+  });
+};
+
+const division = function (num) {
+  return new Promise(function (resolve, reject) {
+    let result = num / 10;
+    if (isNaN(result)) {
+      reject('division() => not a number');
+    } else {
+      resolve(num / 10);
+    }
+  });
+};
+
+add(x)
+  .then(function (result) {
+    return multi(result);
+  })
+  .then(function (result) {
+    return division(result);
+  })
+  .then(function (result) {
+    console.log(result);
+  })
+  .catch(function (err) {
+    console.log(err);
+  });
+```
+
+##### Sample calculation example with Promise (v2 - arrow function)
+
+```javascript
+let x = 10;
+const add = function (num) {
+  return new Promise((resolve, reject) => {
+    let result = num + 10;
+    if (isNaN(result)) {
+      reject('Add() => not a number');
+    } else {
+      resolve(num + 10);
+    }
+  });
+};
+
+const multi = function (num) {
+  return new Promise((resolve, reject) => {
+    let result = num * 10;
+    if (isNaN(result)) {
+      reject('Multi() => not a number');
+    } else {
+      resolve(num * 10);
+    }
+  });
+};
+
+const division = function (num) {
+  return new Promise((resolve, reject) => {
+    let result = num / 10;
+    if (isNaN(result)) {
+      reject('division() => not a number');
+    } else {
+      resolve(num / 10);
+    }
+  });
+};
+
+add(x)
+  .then(result => multi(result))
+  .then(result => division(result))
+  .then(result => console.log(result))
+  .catch(err => console.log(err));
+```
+
+##### Sample calculation example with Promise (v3 - arrow function)
+
+```javascript
+let x = 10;
+
+const add = function (num) {
+  return new Promise((resolve, reject) => resolve(num + 10));
+};
+
+const multi = function (num) {
+  return new Promise((resolve, reject) => resolve(num * 10));
+};
+
+const division = function (num) {
+  return new Promise((resolve, reject) => resolve(num / 10));
+};
+
+add(x)
+  .then(result => multi(result))
+  .then(result => division(result))
+  .then(result => console.log(result))
+  .catch(err => console.log(err));
+```
+
+##### Sample calculation example with Promise (v4 - arrow function)
+
+```javascript
+let x = 10;
+
+const add = num => {
+  return new Promise((resolve, reject) => resolve(num + 10));
+};
+
+const multi = num => {
+  return new Promise((resolve, reject) => resolve(num * 10));
+};
+
+const division = num => {
+  return new Promise((resolve, reject) => resolve(num / 10));
+};
+
+add(x)
+  .then(result => multi(result))
+  .then(result => division(result))
+  .then(result => console.log(result))
+  .catch(err => console.log(err));
+```
+
+###### Another promise example
+
+```javascript
+//Asynchronous task
+let uploadFiles = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      //console.log('upload is completed');
+      resolve('upload is completed');
+    }, 2000);
+  });
+};
+
+//Asynchronous task
+let saveDataIntoDB = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      // console.log('data saved in database');
+      resolve('data saved in database');
+    }, 1500);
+  });
+};
+
+//Asynchronous task
+let generateReport = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      ////console.log('reports generated');
+      //resolve('reports generated');
+
+      ////Lets reject this
+      reject('Error: something went worong. generateReport().');
+    }, 2000);
+  });
+};
+
+//Asynchronous task
+let sendEmail = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      //console.log('email has been sent');
+      resolve('email has been sent');
+    }, 2000);
+  });
+};
+
+uploadFiles()
+  .then(val => {
+    console.log(val);
+    return saveDataIntoDB();
+  })
+  .then(val => {
+    console.log(val);
+    return generateReport();
+  })
+  .then(val => {
+    console.log(val);
+    return sendEmail();
+  })
+  .then(val => console.log(val))
+  .catch(err => console.log(err));
+
+/**
+    upload is completed
+    data saved in database
+    reports generated
+    email has been sent
+   */
+//OR, if we reject
+/**
+    upload is completed
+    data saved in database
+    Error: something went worong. generateReport().    
+   */
+```
+
+### No Callback, with Callback & with Promises
+
+```javascript
+////  Without Callback function
+const posts = [
+  { id: 1, title: 'Post One', body: 'This is post one' },
+  { id: 2, title: 'Post Two', body: 'This is post two' },
+];
+
+function createPost(post) {
+  setTimeout(function () {
+    posts.push(post);
+  }, 2000); // lets pretend server took 2 sec
+}
+
+function getPosts() {
+  setTimeout(function () {
+    let output = '';
+    posts.forEach(function (post) {
+      output += post.title + '\n';
+    });
+    console.log(output);
+  }, 1000); // lets pretend server took 1 sec
+}
+
+createPost({ id: 3, title: 'Post Three', body: 'This is post three' });
+getPosts();
+
+/**
+ * we will get following result
+  Post One
+  Post Two
+* we don't see 'Post Three' becasue createPost() is taking 2 sec to create a post where as getPosts() took only 1 sec. while createPost() is waiting, the UI thread is gone ahead and executed getPosts() and disply all the posts (which in this case 2 posts, 3rd one has not been created yet). so to resolve this issue we use callback function.
+ */
+
+////   With Callback function
+
+const posts = [
+  { id: 1, title: 'Post One', body: 'This is post one' },
+  { id: 2, title: 'Post Two', body: 'This is post two' },
+];
+
+function createPost(post, callback) {
+  setTimeout(function () {
+    posts.push(post);
+    callback();
+  }, 2000);
+}
+
+function getPosts() {
+  setTimeout(function () {
+    let output = '';
+    posts.forEach(function (post) {
+      output += post.title + '\n';
+    });
+    console.log(output);
+  }, 1000);
+}
+
+createPost(
+  { id: 3, title: 'Post Three', body: 'This is post three' },
+  getPosts
+);
+
+/**
+ * we will get following result
+  Post One
+  Post Two
+  Post Three
+ */
+
+////   With promises
+
+const posts = [
+  { id: 1, title: 'Post One', body: 'This is post one' },
+  { id: 2, title: 'Post Two', body: 'This is post two' },
+];
+
+function createPost(post) {
+  return new Promise((resolve, reject) => {
+    setTimeout(function () {
+      posts.push(post);
+
+      let error = true;
+
+      if (!error) {
+        resolve();
+      } else {
+        reject('Error: something went worng!');
+      }
+    }, 2000);
+  });
+}
+
+function getPosts() {
+  setTimeout(function () {
+    let output = '';
+    posts.forEach(function (post) {
+      output += post.title + '\n';
+    });
+    console.log(output);
+  }, 1000);
+}
+
+createPost({ id: 3, title: 'Post Three', body: 'This is post three' })
+  .then(getPosts)
+  .catch(err => console.log(err));
+```
+
 ### ES6 Fetch API
 
-#### Fetch promises chain structure
+#### ES6 Fetch promises chain structure
 
 ```javascript
 const firstApiUrl = '';
