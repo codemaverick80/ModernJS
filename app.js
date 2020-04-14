@@ -1,30 +1,31 @@
-const firstApiUrl = '';
-const secondApiUrl = '';
+/**
+ * 
+  <body>
+     <div class="container">
+      <h2>Async & await fetch Example</h2>      
+      <button id="button1" class="btn">Get API Data</button>
+      <br /><br />
+      <div id="output"></div>
+    </div>
+    <script src="app.js"></script>
+    </body>
+ * 
+ */
 
-// fetch always returns promises
-fetch(firstApiUrl) // pass the first api url
-  .then(apiResponse => {
-    // convert the apiResponse to json and return to the chain.
-    // apiResponse : is the response from first Api
-    // .json() returns promises
-    return apiResponse.json();
-  })
-  .then(json => {
-    // json : is the data we have got from first Api
-    // do something with json (data). populate ui or send this data to another api or save in db ...
+document.getElementById('button1').addEventListener('click', function () {
+  getDataFromApi('https://jsonplaceholder.typicode.com/users').catch(error => {
+    console.log(error);
+  });
+});
 
-    //calling second api so pass the second api url.
-    // remember, fetch always returns promises
-    return fetch(secondApiUrl);
-  })
-  .then(apiResponse => {
-    // convert the apiResponse to json and return to the chain.
-    // apiResponse : is the response from second Api
-    // .json() returns promises
-    return apiResponse.json();
-  })
-  .then(json => {
-    // json : is the data we have got from second Api
-    //do something with json (data). populate ui, sned this data to another api, save in db ...
-  })
-  .catch(err => console.log(err)); //this catch will capture all errors thrown by fetch
+async function getDataFromApi(url) {
+  const response = await fetch(url);
+  const data = await response.json();
+  let output = '';
+
+  data.forEach(function (item) {
+    output += `<li>user name: ${item.username}, Name: ${item.name}`;
+  });
+
+  document.getElementById('output').innerHTML = output;
+}
