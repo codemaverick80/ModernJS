@@ -1680,7 +1680,7 @@ http
   .catch(err => console.log(err));
 ```
 
-#### Async and await
+#### Async and await (structure)
 
 ```javascript
 /**
@@ -1715,7 +1715,7 @@ async function getImageFromApi(url) {
 
 ```javascript
 /**
- * 
+ * index.html
   <body>
      <div class="container">
       <h2>Async & await fetch Example</h2>      
@@ -1728,6 +1728,7 @@ async function getImageFromApi(url) {
  * 
  */
 
+//app.js
 document.getElementById('button1').addEventListener('click', function () {
   getDataFromApi('https://jsonplaceholder.typicode.com/users').catch(error => {
     console.log(error);
