@@ -1539,7 +1539,9 @@ uploadFiles()
    */
 ```
 
-### No Callback, with Callback & with Promises
+## No Callback, with Callback, with Promises and Async-await
+
+Without Callback function
 
 ```javascript
 ////  Without Callback function
@@ -1566,7 +1568,11 @@ function getPosts() {
 
 createPost({ id: 3, title: 'Post Three', body: 'This is post three' });
 getPosts();
+```
 
+With Callback function
+
+```javascript
 /**
  * we will get following result
   Post One
@@ -1609,7 +1615,11 @@ createPost(
   Post Two
   Post Three
  */
+```
 
+With promises
+
+```javascript
 ////   With promises
 
 const posts = [
@@ -1646,9 +1656,101 @@ function getPosts() {
 createPost({ id: 3, title: 'Post Three', body: 'This is post three' })
   .then(getPosts)
   .catch(err => console.log(err));
+
+/**
+ * we will get following result
+  Post One
+  Post Two
+  Post Three
+ */
 ```
 
-### ES6 Fetch API
+Async and await
+
+```javascript
+////   Async and await
+
+const posts = [
+  { id: 1, title: 'Post One', body: 'This is post one' },
+  { id: 2, title: 'Post Two', body: 'This is post two' },
+];
+
+function createPost(post) {
+  return new Promise((resolve, reject) => {
+    setTimeout(function () {
+      posts.push(post);
+
+      let error = true;
+
+      if (!error) {
+        resolve();
+      } else {
+        reject('Error: something went worng!');
+      }
+    }, 2000);
+  });
+}
+
+function getPosts() {
+  setTimeout(function () {
+    let output = '';
+    posts.forEach(function (post) {
+      output += post.title + '\n';
+    });
+    console.log(output);
+  }, 1000);
+}
+
+async function init() {
+  await createPost({ id: 3, title: 'Post Three', body: 'This is post three' });
+  getPosts();
+}
+
+init();
+```
+
+Async & await with fetch Api
+
+```javascript
+//// Async & await
+
+document.getElementById('button1').addEventListener('click', function () {
+  const url = 'https://jsonplaceholder.typicode.com/users';
+  fetchUsers(url).then(populateUI).catch(handleError);
+});
+
+async function fetchUsers(url) {
+  const response = await fetch(url);
+
+  if (response.status >= 400 && response.status < 600) {
+    throw new Error('Something went wrong');
+  }
+
+  const responseData = response.json();
+  return responseData;
+}
+
+function populateUI(data) {
+  let output = '';
+  data.forEach(function (item) {
+    output += `<li>user name: ${item.username}, Name: ${item.name}`;
+  });
+  document.getElementById('output').innerHTML = output;
+}
+
+function handleError(err) {
+  console.log(err.message);
+  return new Response(
+    err
+    // JSON.stringify({
+    //   code: 400,
+    //   message: 'Stupid network Error',
+    // })
+  );
+}
+```
+
+## ES6 Fetch API
 
 #### ES6 Fetch promises chain structure
 
