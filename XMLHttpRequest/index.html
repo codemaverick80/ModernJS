@@ -1,115 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-    <title>Modern Javascript</title>
-  </head>
-  <body>
-    <div class="container-lg mt=10">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item active" aria-current="page"></li>
-        </ol>
-      </nav>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
+        <title>Modern Javascript</title>
+    </head>
+    <body>
+        <div class="container-lg mt=10">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page"></li>
+                </ol>
+            </nav>
 
-      <!-- Tabs  - START-->
-      <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <a class="nav-item nav-link active" id="nav-joke-tab" data-toggle="tab" href="#nav-joke" role="tab" aria-controls="nav-joke" aria-selected="true">Jokes</a>
-          <a class="nav-item nav-link" id="nav-post-tab" data-toggle="tab" href="#nav-post" role="tab" aria-controls="nav-post" aria-selected="false">Posts</a>
-          <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Create Post</a>
-        </div>
-      </nav>
-      <!-- Tabs - END-->
+            <!-- Tabs  - START-->
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a
+                        class="nav-item nav-link active"
+                        id="nav-joke-tab"
+                        data-toggle="tab"
+                        href="#nav-joke"
+                        role="tab"
+                        aria-controls="nav-joke"
+                        aria-selected="true"
+                        >Jokes</a
+                    >
+                    <a
+                        class="nav-item nav-link"
+                        id="nav-post-tab"
+                        data-toggle="tab"
+                        href="#nav-post"
+                        role="tab"
+                        aria-controls="nav-post"
+                        aria-selected="false"
+                        >Posts</a
+                    >
+                    <a
+                        class="nav-item nav-link"
+                        id="nav-contact-tab"
+                        data-toggle="tab"
+                        href="#nav-contact"
+                        role="tab"
+                        aria-controls="nav-contact"
+                        aria-selected="false"
+                        >Create Post</a
+                    >
+                </div>
+            </nav>
+            <!-- Tabs - END-->
 
-      <!-- Tabs Contents - START-->
-      <div class="tab-content" id="nav-tabContent">
+            <!-- Tabs Contents - START-->
+            <div class="tab-content" id="nav-tabContent">
+                <!-- Jokes Tab Contents - START-->
+                <div
+                    class="tab-pane fade show active"
+                    id="nav-joke"
+                    role="tabpanel"
+                    aria-labelledby="nav-joke-tab"
+                >
+                    <div class="form-inline pb-2">
+                        <div class="form-group p-3">
+                            <label for="numberOfjokes">Number of Jokes</label>
+                            <input
+                                type="number"
+                                id="numberOfjokes"
+                                class="form-control mx-sm-3"
+                                aria-describedby="passwordHelpInline"
+                            />
+                            <button type="button" class="btn btn-primary mb-2 mr-3 get-jokes">
+                                Get Jokes
+                            </button>
+                            <button type="button" class="btn btn-primary mb-2 clear-jokes">
+                                Clear Jokes
+                            </button>
+                        </div>
+                    </div>
 
-        <!-- Jokes Tab Contents - START-->
-        <div class="tab-pane fade show active" id="nav-joke" role="tabpanel" aria-labelledby="nav-joke-tab">
-          <div class="form-inline pb-2">
-            <div class="form-group p-3">
-              <label for="numberOfjokes">Number of Jokes</label>
-              <input type="number" id="numberOfjokes" class="form-control mx-sm-3" aria-describedby="passwordHelpInline"/>
-              <button type="button" class="btn btn-primary mb-2 mr-3 get-jokes">Get Jokes</button>    
-              <button type="button" class="btn btn-primary mb-2 clear-jokes">Clear Jokes</button>
+                    <div class="card p-2 d-none">
+                        <div class="card-header">Jokes</div>
+                        <ul class="list-group list-group-flush jokes"></ul>
+                    </div>
+
+                    <div
+                        class="spinner-border text-success d-none"
+                        style="width: 3rem; height: 3rem;"
+                        role="status"
+                    >
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <!-- Jokes Tab Contents - END-->
+
+                <!-- Posts Tab Contents - START-->
+                <div
+                    class="tab-pane fade"
+                    id="nav-post"
+                    role="tabpanel"
+                    aria-labelledby="nav-post-tab"
+                >
+                    <form id="postsForm">
+                        <div class="form-group row p-2">
+                            <label for="title" class="col-sm-2 col-form-label col-form-label-sm"
+                                >Title</label
+                            >
+                            <div class="col-sm-4">
+                                <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                    id="title"
+                                    placeholder="Title"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="body" class="col-sm-2 col-form-label col-form-label-sm"
+                                >Post Body</label
+                            >
+                            <div class="col-sm-8">
+                                <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                    id="body"
+                                    placeholder="Post Body"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label
+                                for="body"
+                                class="col-sm-2 col-form-label col-form-label-sm"
+                            ></label>
+                            <div class="col-sm-4">
+                                <button type="button" class="btn btn-primary btn-sm create-post">
+                                    Create Post
+                                </button>
+                                <div class="post-create-message"></div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div>
+                        <button type="button" class="btn btn-primary btn-sm get-post">
+                            Get Post
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm get-posts">
+                            Get Posts
+                        </button>
+                        <div class="div-post"></div>
+                    </div>
+                </div>
+                <!-- Posts Tab Contents - END-->
+
+                <div
+                    class="tab-pane fade"
+                    id="nav-contact"
+                    role="tabpanel"
+                    aria-labelledby="nav-contact-tab"
+                >
+                    Contact
+                </div>
             </div>
-          </div>
-    
-          <div class="card p-2 d-none">
-            <div class="card-header">Jokes</div>
-            <ul class="list-group list-group-flush jokes">
-              
-            </ul>
-          </div>
 
-          <div class="spinner-border text-success d-none" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
+            <!-- Tabs Contents - END-->
         </div>
-        <!-- Jokes Tab Contents - END-->
 
-
-        <!-- Posts Tab Contents - START-->
-        <div class="tab-pane fade" id="nav-post" role="tabpanel" aria-labelledby="nav-post-tab">
-          <form id="postsForm">
-            <div class="form-group row p-2">
-              <label for="title" class="col-sm-2 col-form-label col-form-label-sm">Title</label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control form-control-sm" id="title" placeholder="Title">
-              </div>
-            </div>
-
-           <div class="form-group row">
-              <label for="body" class="col-sm-2 col-form-label col-form-label-sm">Post Body</label>
-              <div class="col-sm-8">
-                <input type="text" class="form-control form-control-sm" id="body" placeholder="Post Body">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="body" class="col-sm-2 col-form-label col-form-label-sm"></label>
-              <div class="col-sm-4">
-                <button type="button" class="btn btn-primary btn-sm">Create Post</button>
-              </div>
-            </div>
-          </form>  
-
-
-
-
-        </div>
-        <!-- Posts Tab Contents - END-->
-
-        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-
-            Contact
-
-        </div>
-      </div>
-
-      <!-- Tabs Contents - END-->
-
-
-    </div>
-
-
- 
-
-
-
-    <!-- <div class="form-inline pb-2">
+        <!-- <div class="form-inline pb-2">
         <div class="form-group">
           <label for="numberOfjokes">Number of Jokes</label>
           <input
@@ -138,48 +203,76 @@
       </div>
     </div> -->
 
-    <!-- bootstrap 4 CDN-->
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
+        <!-- bootstrap 4 CDN-->
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"
+        ></script>
 
-    <!-- app js -->
-    <script src="XmlHttpLibrary.js"></script>
-    <script src="app.js"></script>
-    <script >
+        <!-- app js -->
+        <script src="XmlHttpLibrary.js"></script>
+        <script src="app.js"></script>
+        <script>
+            const app = new App();
+            document.querySelector('.get-jokes').addEventListener('click', getJokes);
+            document.querySelector('.clear-jokes').addEventListener('click', clearJokes);
 
-    // $('#nav-home-tab').on('click', function (e) {
-    //   e.preventDefault()
-    //   $(this).tab('show')
-     
-    // })
+            function getJokes(e) {
+                app.getJokes();
+                e.preventDefault();
+            }
 
-    // $('#nav-profile-tab').on('click', function (e) {
-    //   e.preventDefault()
-    //   $(this).tab('show')
-     
-    // })
+            function clearJokes() {
+                app.clearJokesUI();
+            }
 
-    // $('#nav-contact-tab').on('click', function (e) {
-    //   e.preventDefault()
-    //   $(this).tab('show')
-    
-    // })
+            document.querySelector('.get-post').addEventListener('click', function (e) {
+                app.getPost();
+                e.preventDefault();
+            });
+            document.querySelector('.get-posts').addEventListener('click', function (e) {
+                app.getPosts();
+                e.preventDefault();
+            });
 
+            document.querySelector('.create-post').addEventListener('click', function (e) {
+                const postData = {
+                    title: document.querySelector('#title').value,
+                    body: document.querySelector('#body').value,
+                };
 
-    </script>
+                app.createPost(postData);
+                e.preventDefault();
+            });
 
-  </body>
+            // $('#nav-home-tab').on('click', function (e) {
+            //   e.preventDefault()
+            //   $(this).tab('show')
+
+            // })
+
+            // $('#nav-profile-tab').on('click', function (e) {
+            //   e.preventDefault()
+            //   $(this).tab('show')
+
+            // })
+
+            // $('#nav-contact-tab').on('click', function (e) {
+            //   e.preventDefault()
+            //   $(this).tab('show')
+
+            // })
+        </script>
+    </body>
 </html>
