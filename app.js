@@ -312,3 +312,22 @@ const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
 // const ageSum = ages.reduce((total, age) => total + age, 0);
 
 // console.log(ageSum);
+
+
+
+const itemObj=[
+  {price:15, quantity:2},
+  {price:20, quantity:3},
+  {price :15, quantity:4}
+];
+
+
+// const itemCost=itemObj.reduce((total,item)=>{
+//   return total + item.price * item.quantity
+
+// },0);
+
+const itemCost=itemObj.reduce((total,item)=> total + item.price * item.quantity ,0);
+
+console.log(`Item Total is ${itemCost}`);
+
