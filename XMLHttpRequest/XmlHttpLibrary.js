@@ -1,3 +1,13 @@
+/**
+ * XmlHttpLibrary Library
+ * Library for making XmlHttp HTTP requests
+ *
+ * @version 1.0.0
+ * @author Harish Chand
+ * @license MIT
+ *
+ */
+
 //Constructor
 function XmlHttpLibrary() {
   this.http = new XMLHttpRequest();
