@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+			integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+			crossorigin="anonymous"
+		/>
+		<title>FormData</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row justify-content-md-center m-3">
+				<header>
+					<h4>Using JS FormData to Parse Forms</h4>
+				</header>
+			</div>
+			<div class="row">
+				<div class="col"></div>
+
+				<div class="col-8">
+					<form action="#" id="myForm" class="border p-4">
+						<!-- Grid Row START-->
+						<div class="form-row">
+							<!-- First Grid column START-->
+							<div class="col-md-6">
+								<div class="md-form form-group">
+									<label for="firstname">First Name</label>
+									<input type="text" class="form-control" id="firstname" name="firstname" required placeholder=""/>
+								</div>
+							</div>
+							<!-- First Grid column END -->
+
+							<!-- Second Grid column START-->
+							<div class="col-md-6">
+								<div class="md-form form-group">
+									<label for="lastname">Last Name</label>
+									<input type="text" class="form-control" id="lastname" name="lastname" required placeholder=""
+									/>
+								</div>
+							</div>
+							<!-- Second Grid column END-->
+						</div>
+						<!-- Grid Row END -->
+
+						<!-- Grid row  START-->
+						<div class="row">
+							<div class="col-md-12">
+								<div class="md-form form-group">
+									<label for="address">Address</label>
+									<input type="text" class="form-control" id="address" name="address" required placeholder="" />
+								</div>
+							</div>
+						</div>
+						<!-- Grid row  END-->
+
+						<!-- Grid row  START-->
+						<div class="row">
+							<div class="col-md-12">
+								<div class="md-form form-group">
+									<label for="address2">Address 2</label>
+									<input	type="text"	class="form-control"	id="address2" name="address2"	placeholder=""/>
+								</div>
+							</div>
+						</div>
+						<!-- Grid row  END-->
+
+						<!-- Grid row  START-->
+						<div class="form-row">
+							<div class="col-md-6">
+								<div class="md-form form-group">
+									<label for="city">City</label>
+									<input	type="text"	class="form-control" id="city" name="city" required	placeholder=""/>
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<div class="md-form form-group">
+									<label for="zipcode">Zip</label>
+									<input	type="text"	class="form-control" id="zipcode" name="zipcode" required placeholder=""/>
+								</div>
+							</div>
+						</div>
+						<!-- Grid row  END-->
+						<button id="btnSubmit" class="btn btn-primary btn-md">
+							Submit
+						</button>
+					</form>
+				</div>
+
+
+        
+				<div class="col"></div>
+			</div>
+		</div>
+
+		<!-- bootstrap 4 CDN-->
+		<script
+			src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+			crossorigin="anonymous"
+		></script>
+<script src="app.js"></script>
+	
+	</body>
+</html>
