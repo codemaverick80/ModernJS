@@ -20,7 +20,7 @@ async function handleFormAsync(ev) {
 
 	// call api and send the form data
 	let json = await convertFordData2Json(myFormData);
-	console.log(json);
+	//console.log(json);
 	let url = 'https://localhost:5003/api/sandbox';
 	let header = new Headers();
 	header.append('Content-type', 'application/json');
@@ -31,22 +31,32 @@ async function handleFormAsync(ev) {
 	});
 	//console.log(request);
 
-	fetch(request)
-		.then(response => response.json())
-		.then(function (json) {
-			let a = json;
-			console.log('Response from server');
-			console.log(json);
-		})
-		.catch(function (err) {
-			let a = err;
-			console.log(err);
-		});
+	////  Using Fetch API
+	// fetch(request)
+	// 	.then(response => {
+	// 		console.log(response.ok);
+	// 		return response.json();
+	// 	})
+	// 	.then(function (json) {
+	// 		let a = json;
+	// 		console.log('Response from server');
+	// 		console.log(json);
+	// 	})
+	// 	.catch(function (err) {
+	// 		let a = err;
+	// 		console.log(err);
+	// 	});
+
+	//// Async and await Fetch Api
+	submitForm(request)
+		//if submitForm becomes a rejected promise then catch will handle the error.
+		.catch(error => console.log(error));
 }
 
-function handleErrors(response) {
-	if (!response.ok) throw new Error(response.statusText);
-	return response;
+async function submitForm(request) {
+	const response = await fetch(request);
+	const data = await response.json();
+	console.log(data);
 }
 
 function convertFordData2Json(formData) {
